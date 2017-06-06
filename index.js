@@ -35,7 +35,7 @@ function handleSubmit(event) {
 
     function createDetailItem(text) {
         const li = document.createElement('li');
-        li.innerHTML = text;
+        li.textContent = text;
         detailList.appendChild(li);
         return li;
     }
