@@ -24,19 +24,32 @@ function handleSubmit(event) {
 
     const favFood = form.favoriteFood.value;
     const introText = document.querySelector('#introText');
-    introText.textContent = 'Hello, I like ' + favFood + ' and my favorite colors are shown on this page.';
 
     const age = form.age.value;
 
-    const colorDiv = `<div style="background-color: ${favCol}; width: 100px; height: 50px;"></div>`
 
-    details.innerHTML = `
-    <ul>
-        <li>Name: ${fullName}</li>
-        <li>Favorite Color: ${colorDiv}</li>
-        <li>Age: ${age}</li>
-    </ul>
-    `;
+    const detailList = document.createElement('ul');
+
+    const colorDiv = document.createElement('div');
+    colorDiv.setAttribute('style',`background-color: ${favCol}; width: 100px; height: 50px;`);
+
+    function createDetailItem(text) {
+        const li = document.createElement('li');
+        li.innerHTML = text;
+        detailList.appendChild(li);
+        return li;
+    }
+
+    introText.textContent = `Hello, I am ${age} years old, I like to eat ${favFood} and my favorite colors are shown on this page.`;
+
+    createDetailItem(`Name: ${fullName}`);
+    const colorLi = createDetailItem(`Favorite Color:`);
+    colorLi.appendChild(colorDiv);
+    createDetailItem(`Age: ${age}`);
+    createDetailItem(`Favorite Food: ${favFood}`);
+
+    details.innerHTML = "";
+    details.appendChild(detailList);
 
 }
 
