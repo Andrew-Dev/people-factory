@@ -17,7 +17,7 @@ function handleSubmit(event) {
     const favCol = form.favoriteColor.value;
     const comCol = form.secondFavoriteColor.value;
     
-    document.body.style.backgroundColor = favCol;
+    heading.style.color = favCol;
     document.body.style.color = comCol;
 
     heading.textContent = fullName;
