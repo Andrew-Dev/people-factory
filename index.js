@@ -4,7 +4,12 @@ function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const heading = document.querySelector('h1');
+    
+    const details = document.querySelector('#details');
+
     const fullName = form.firstName.value + ' ' + form.lastName.value;
+
+    details.innerHTML = '<strong>' + fullName + '</strong>'
 
     const favCol = form.favoriteColor.value;
     const comCol = form.secondFavoriteColor.value;
