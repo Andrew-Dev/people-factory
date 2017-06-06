@@ -28,13 +28,16 @@ function handleSubmit(event) {
 
     const age = form.age.value;
 
+    const colorDiv = `<div style="background-color: ${favCol}; width: 100px; height: 50px;"></div>`
+
     details.innerHTML = `
     <ul>
         <li>Name: ${fullName}</li>
-        <li>Favorite Color: ${favCol}</li>
+        <li>Favorite Color: ${colorDiv}</li>
         <li>Age: ${age}</li>
     </ul>
     `;
+
 }
 
 personForm.addEventListener('submit',handleSubmit);
