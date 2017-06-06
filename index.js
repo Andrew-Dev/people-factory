@@ -8,6 +8,20 @@ function renderColor(color) {
     return colorDiv;
 }
 
+function renderListItem(label,value) {
+    const li = document.createElement('li');
+    li.textContent = `${label}: ${value}`;
+    return li;
+}
+function renderList(personData) {
+    const list = document.createElement('ul');
+    Object.keys(personData).map(function(label) {
+        const item = renderListItem(label, personData[label]);
+        list.appendChild(item);
+    });
+    return list;
+}
+
 function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -17,45 +31,15 @@ function handleSubmit(event) {
 
     const fullName = form.firstName.value + ' ' + form.lastName.value;
 
-    // const boldedName = document.createElement('strong');
-    // boldedName.textContent = fullName;
-
-    // details.appendChild(boldedName);
-
-    const favCol = form.favoriteColor.value;
-    const comCol = form.secondFavoriteColor.value;
-    
-    heading.style.color = favCol;
-    document.body.style.color = comCol;
-
-    heading.textContent = fullName;
-
-    const favFood = form.favoriteFood.value;
-    const introText = document.querySelector('#introText');
-
-    const age = form.age.value;
-
-
-    const detailList = document.createElement('ul');
-    
-
-    function createDetailItem(text) {
-        const li = document.createElement('li');
-        li.textContent = text;
-        detailList.appendChild(li);
-        return li;
+    const person = {
+        name: form.firstName.value + ' ' + form.lastName.value,
+        favoriteColor: form.favoriteColor.value,
+        secondFavoriteColor: form.secondFavoriteColor.value,
+        favoriteFood: form.favoriteFood.value,
+        age: form.age.value,
     }
 
-    introText.textContent = `Hello, I am ${age} years old, I like to eat ${favFood} and my favorite colors are shown on this page.`;
-
-    createDetailItem(`Name: ${fullName}`);
-    const colorLi = createDetailItem(`Favorite Color:`);
-    colorLi.appendChild(renderColor(favCol));
-    createDetailItem(`Age: ${age}`);
-    createDetailItem(`Favorite Food: ${favFood}`);
-
-    details.innerHTML = "";
-    details.appendChild(detailList);
+    details.appendChild(renderList(person))
 
 }
 
