@@ -1,5 +1,13 @@
 const personForm = document.querySelector('#personForm');
 
+function renderColor(color) {
+    const colorDiv = document.createElement('div');
+    colorDiv.style.backgroundColor = color;
+    colorDiv.style.width = '100px'
+    colorDiv.style.height = '50px'
+    return colorDiv;
+}
+
 function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -29,9 +37,7 @@ function handleSubmit(event) {
 
 
     const detailList = document.createElement('ul');
-
-    const colorDiv = document.createElement('div');
-    colorDiv.setAttribute('style',`background-color: ${favCol}; width: 100px; height: 50px;`);
+    
 
     function createDetailItem(text) {
         const li = document.createElement('li');
@@ -44,7 +50,7 @@ function handleSubmit(event) {
 
     createDetailItem(`Name: ${fullName}`);
     const colorLi = createDetailItem(`Favorite Color:`);
-    colorLi.appendChild(colorDiv);
+    colorLi.appendChild(renderColor(favCol));
     createDetailItem(`Age: ${age}`);
     createDetailItem(`Favorite Food: ${favFood}`);
 
