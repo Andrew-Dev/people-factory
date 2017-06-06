@@ -10,7 +10,7 @@ function renderColor(color) {
 
 function renderListItem(label,value) {
     const li = document.createElement('li');
-    li.textContent = `${label}: ${value}`;
+    li.innerHTML = `${label}: ${value}`;
     return li;
 }
 function renderList(personData) {
@@ -33,8 +33,8 @@ function handleSubmit(event) {
 
     const person = {
         name: form.firstName.value + ' ' + form.lastName.value,
-        favoriteColor: form.favoriteColor.value,
-        secondFavoriteColor: form.secondFavoriteColor.value,
+        favoriteColor: renderColor(form.favoriteColor.value).outerHTML,
+        secondFavoriteColor: renderColor(form.secondFavoriteColor.value).outerHTML,
         favoriteFood: form.favoriteFood.value,
         age: form.age.value,
     }
