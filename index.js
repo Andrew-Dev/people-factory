@@ -9,7 +9,7 @@ function handleSubmit(event) {
 
     const fullName = form.firstName.value + ' ' + form.lastName.value;
 
-    details.innerHTML = '<strong>' + fullName + '</strong>'
+    details.innerHTML = `<strong>${fullName}</strong>`;
 
     const favCol = form.favoriteColor.value;
     const comCol = form.secondFavoriteColor.value;
