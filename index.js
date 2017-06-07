@@ -1,29 +1,34 @@
-(function(){
-    const personForm = document.querySelector('#personForm');
+const peopleFactory = {
 
-    function renderColor(color) {
+    init: function(formSelector) {
+        const form = document.querySelector(formSelector);
+        form.addEventListener('submit',this.handleSubmit.bind(this));
+    },
+
+    renderColor: function(color) {
         const colorDiv = document.createElement('div');
         colorDiv.style.backgroundColor = color;
         colorDiv.style.width = '100px'
         colorDiv.style.height = '50px'
         return colorDiv;
-    }
+    },
 
-    function renderListItem(label,value) {
+    renderListItem: function(label,value) {
         const li = document.createElement('li');
         li.innerHTML = `${label}: ${value}`;
         return li;
-    }
-    function renderList(personData) {
+    },
+
+    renderList: function(personData) {
         const list = document.createElement('ul');
-        Object.keys(personData).map(function(label) {
-            const item = renderListItem(label, personData[label]);
+        Object.keys(personData).map((label) => {
+            const item = this.renderListItem(label, personData[label]);
             list.appendChild(item);
         });
         return list;
-    }
+    },
 
-    function handleSubmit(event) {
+    handleSubmit: function(event) {
         event.preventDefault();
         const form = event.target;
         const heading = document.querySelector('h1');
@@ -34,17 +39,17 @@
 
         const person = {
             name: form.firstName.value + ' ' + form.lastName.value,
-            favoriteColor: renderColor(form.favoriteColor.value).outerHTML,
-            secondFavoriteColor: renderColor(form.secondFavoriteColor.value).outerHTML,
+            favoriteColor: this.renderColor(form.favoriteColor.value).outerHTML,
+            secondFavoriteColor: this.renderColor(form.secondFavoriteColor.value).outerHTML,
             favoriteFood: form.favoriteFood.value,
             age: form.age.value,
         }
 
-        details.appendChild(renderList(person))
+        details.appendChild(this.renderList(person))
 
-    }
+    },
+    
+}
 
-    personForm.addEventListener('submit',handleSubmit);
-})()
-
+peopleFactory.init('#personForm');
 //IIFE Immediately invoked function expression
